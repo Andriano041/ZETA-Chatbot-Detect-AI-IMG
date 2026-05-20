@@ -30,7 +30,7 @@ const Home = () => {
       {/* 1. Hero Section (Bagian Atas) */}
       <div className="home-hero">
         <h1 className="home-hero-title">
-          Ungkap Manipulasi Digital dalam Hitungan Detik
+          ZETA Deteksi Keaslian Gambar
         </h1>
         <p className="home-hero-subtitle">
           Periksa apakah gambar Anda asli, hasil rekayasa, atau dibuat oleh AI (Generative AI) menggunakan teknologi pemindaian tingkat lanjut.
