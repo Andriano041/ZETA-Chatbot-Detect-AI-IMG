@@ -89,7 +89,7 @@ const Detect = () => {
     const newSessionId = `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
     localStorage.setItem("detect_session_id", newSessionId);
     setSessionId(newSessionId);
-    
+
     const initialMsg = [
       {
         sender: "bot",
@@ -262,12 +262,12 @@ const Detect = () => {
       >
         <div className="chat-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h1>🔎 ZETA - AI Verification Chatbot</h1>
-          <button 
-            onClick={handleResetChat} 
-            className="upload-btn" 
-            style={{ padding: '6px 14px', fontSize: '0.85rem', background: 'rgba(255, 56, 56, 0.15)', color: '#ff3838', border: '1px solid rgba(255, 56, 56, 0.3)', borderRadius: '6px', cursor: 'pointer', transition: 'all 0.3s ease' }}
-            onMouseOver={(e) => { e.currentTarget.style.background = '#ff3838'; e.currentTarget.style.color = '#fff'; }}
-            onMouseOut={(e) => { e.currentTarget.style.background = 'rgba(255, 56, 56, 0.15)'; e.currentTarget.style.color = '#ff3838'; }}
+          <button
+            onClick={handleResetChat}
+            className="upload-btn"
+            style={{ padding: '6px 14px', fontSize: '0.85rem', background: 'rgba(56, 169, 255, 0.15)', color: '#38b6ffff', border: '1px solid rgba(56, 162, 255, 0.3)', borderRadius: '6px', cursor: 'pointer', transition: 'all 0.3s ease' }}
+            onMouseOver={(e) => { e.currentTarget.style.background = '#38a2ffff'; e.currentTarget.style.color = '#fff'; }}
+            onMouseOut={(e) => { e.currentTarget.style.background = 'rgba(56, 252, 255, 0.15)'; e.currentTarget.style.color = '#38d4ffff'; }}
           >
             Reset Chat
           </button>
