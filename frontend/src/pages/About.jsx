@@ -1,6 +1,6 @@
-import React from 'react';
-import gundamLogo from '../img/gundam.jpg';
-import '../styles/PageStyles.css';
+import React from "react";
+import gundamLogo from "../img/gundam.jpg";
+import "../styles/PageStyles.css";
 
 const About = () => {
   return (
@@ -15,7 +15,12 @@ const About = () => {
         <div className="about-card card">
           <h3>AI Image Detector & Chatbot</h3>
           <p className="about-text">
-            Aplikasi ini dirancang untuk mendeteksi apakah sebuah gambar dihasilkan oleh kecerdasan buatan (AI) atau merupakan foto asli. Dilengkapi dengan asisten virtual bernama <strong>ZETA</strong> yang dapat membantu menjelaskan hasil deteksi secara detail, menganalisis keganjilan visual, membaca metadata EXIF, dan menjawab pertanyaan Anda secara interaktif.
+            Aplikasi ini dirancang untuk mendeteksi apakah sebuah gambar
+            dihasilkan oleh kecerdasan buatan (AI) atau merupakan foto asli.
+            Dilengkapi dengan asisten virtual bernama <strong>ZETA</strong> yang
+            dapat membantu menjelaskan hasil deteksi secara detail, menganalisis
+            keganjilan visual, membaca metadata EXIF, dan menjawab pertanyaan
+            Anda secara interaktif.
           </p>
           <div className="about-features-list">
             <div className="about-feature-item">
