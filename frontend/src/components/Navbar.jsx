@@ -1,15 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import gundamLogo from '../img/gundam.jpg';
 import '../styles/Navbar.css';
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const [userName, setUserName] = useState('Pengguna');
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('userZeta');
+    if (storedUser) {
+      try {
+        const userData = JSON.parse(storedUser);
+        if (userData && userData.name) {
+          setUserName(userData.name);
+        }
+      } catch (error) {
+        console.error("Gagal mengambil data user dari localStorage:", error);
+      }
+    }
+  }, []);
 
   const handleExit = () => {
     localStorage.removeItem("detect_chat_messages");
     localStorage.removeItem("detect_session_id");
-    navigate('/');
+    localStorage.removeItem("userZeta"); // 👈 Hapus sesi user saat logout
+    navigate('/login');
   };
 
   return (
@@ -34,8 +50,12 @@ const Navbar = () => {
             About
           </NavLink>
         </div>
-
-        <div className="navbar-actions">
+        {/* Bagian Actions / Tombol */}
+        <div className="navbar-actions" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+          {/* 👇 Menampilkan Nama Pengguna di Sebelah Kiri Tombol Exit 👇 */}
+          <span className="user-profile-name" style={{ color: '#fff', fontSize: '14px', fontWeight: '500' }}>
+            Hai, <span className="text-cyan" style={{ color: 'var(--cyan-accent, #00f0ff)' }}>{userName}</span>
+          </span>
           <button className="exit-btn" onClick={handleExit}>
             Exit
           </button>

@@ -1,0 +1,164 @@
+/* Overlay Latar Belakang Transparan & Blur */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  /* Gelap tipis transparan */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(5px);
+  /* Efek blur latar belakang */
+}
+
+/* Kotak Utama Modal (Persegi Panjang Ramping) */
+.modal-mini-box {
+  background: rgba(20, 24, 33, 0.95);
+  /* Tema Dark Mode */
+  border-radius: 14px;
+  width: 400px;
+  /* Lebar horizontal persegi panjang */
+  max-width: 92%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+  animation: slideInUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
+}
+
+/* Pembungkus Konten Utama (Horizontal Layout) */
+.modal-main-body {
+  display: flex;
+  align-items: center;
+  /* Ikon & Kotak teks sejajar lurus secara vertikal */
+  gap: 14px;
+  padding: 16px 18px 20px 18px;
+}
+
+/* Pembungkus Ikon di Sisi Kiri */
+.modal-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.success .modal-icon {
+  width: 26px;
+  height: 26px;
+  color: #34d399;
+  /* Hijau Emerald */
+}
+
+.error .modal-icon {
+  width: 26px;
+  height: 26px;
+  color: #ef4444;
+  /* Merah */
+}
+
+/* ==========================================================================
+   KOTAK PEMBUNGKUS TULISAN UTAMA (Sesuai Permintaan)
+   ========================================================================== */
+.modal-content-box {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  text-align: left;
+  flex-grow: 1;
+  min-width: 0;
+
+  /* Membuat komponen tulisan masuk ke dalam kotak visual terpisah */
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  /* Sudut membulat pada kotak tulisan */
+  padding: 10px 14px;
+  /* Jarak tulisan dengan pembatas kotak */
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.02);
+}
+
+/* Warna Kotak Tulisan jika status sukses */
+.success .modal-content-box {
+  background: rgba(16, 185, 129, 0.03);
+  border-color: rgba(52, 211, 153, 0.12);
+}
+
+/* Warna Kotak Tulisan jika status error */
+.error .modal-content-box {
+  background: rgba(239, 68, 68, 0.03);
+  border-color: rgba(239, 68, 68, 0.12);
+}
+
+/* Pengaturan Huruf di Dalam Kotak */
+.modal-title {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.2px;
+}
+
+.modal-message {
+  margin: 0;
+  font-size: 11.5px;
+  color: #9ca3af;
+  /* Abu-abu sekunder */
+  line-height: 1.4;
+  word-break: break-word;
+  /* Mengurung teks panjang agar otomatis patah ke bawah */
+}
+
+/* ==========================================================================
+   ANIMASI GARIS PROGRESS LOADING TIMELINE
+   ========================================================================== */
+.modal-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.modal-progress-fill {
+  height: 100%;
+  width: 100%;
+  transform-origin: left;
+
+  /* Berjalan sinkron selama 2.5 detik */
+}
+
+.success .modal-progress-fill {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.error .modal-progress-fill {
+  background: linear-gradient(90deg, #dc2626, #ef4444);
+}
+
+/* Kebijakan Animasi */
+@keyframes slideInUp {
+  from {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes shrinkWidth {
+  from {
+    transform: scaleX(1);
+  }
+
+  to {
+    transform: scaleX(0);
+  }
+}

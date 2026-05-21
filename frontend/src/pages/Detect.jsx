@@ -202,7 +202,11 @@ const Detect = () => {
         const updated = [...prev];
         // Cari pesan user terakhir yang mempunyai image blob, lalu ganti dengan static imageUrl dari server
         for (let i = updated.length - 1; i >= 0; i--) {
-          if (updated[i].sender === "user" && updated[i].image && updated[i].image.startsWith("blob:")) {
+          if (
+            updated[i].sender === "user" &&
+            updated[i].image &&
+            updated[i].image.startsWith("blob:")
+          ) {
             updated[i].image = data.imageUrl || updated[i].image;
             break;
           }
@@ -233,11 +237,16 @@ const Detect = () => {
 
   const getVerdictClass = (verdict) => {
     switch (verdict) {
-      case "Sangat Mungkin AI": return "verdict-badge ai-high";
-      case "Mungkin AI": return "verdict-badge ai-medium";
-      case "Mungkin Asli": return "verdict-badge real-medium";
-      case "Sangat Mungkin Asli": return "verdict-badge real-high";
-      default: return "verdict-badge unknown";
+      case "Sangat Mungkin AI":
+        return "verdict-badge ai-high";
+      case "Mungkin AI":
+        return "verdict-badge ai-medium";
+      case "Mungkin Asli":
+        return "verdict-badge real-medium";
+      case "Sangat Mungkin Asli":
+        return "verdict-badge real-high";
+      default:
+        return "verdict-badge unknown";
     }
   };
 
@@ -251,7 +260,9 @@ const Detect = () => {
     <div className="page-container detect-page-container animate-fade-in">
       <h1 className="page-title">Detect AI Generated Image</h1>
       <p className="page-description">
-        Gunakan kecerdasan buatan Gemini untuk mengidentifikasi apakah sebuah gambar dibuat oleh AI (seperti Midjourney, DALL-E, atau Stable Diffusion) atau merupakan foto nyata.
+        Gunakan kecerdasan buatan Gemini untuk mengidentifikasi apakah sebuah
+        gambar dibuat oleh AI (seperti Midjourney, DALL-E, atau Stable
+        Diffusion) atau merupakan foto nyata.
       </p>
 
       <div
@@ -260,14 +271,36 @@ const Detect = () => {
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
-        <div className="chat-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h1>🔎 ZETA - AI Verification Chatbot</h1>
+        <div
+          className="chat-header"
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <h1> ZETA - AI Verification Chatbot</h1>
           <button
             onClick={handleResetChat}
             className="upload-btn"
-            style={{ padding: '6px 14px', fontSize: '0.85rem', background: 'rgba(56, 169, 255, 0.15)', color: '#38b6ffff', border: '1px solid rgba(56, 162, 255, 0.3)', borderRadius: '6px', cursor: 'pointer', transition: 'all 0.3s ease' }}
-            onMouseOver={(e) => { e.currentTarget.style.background = '#38a2ffff'; e.currentTarget.style.color = '#fff'; }}
-            onMouseOut={(e) => { e.currentTarget.style.background = 'rgba(56, 252, 255, 0.15)'; e.currentTarget.style.color = '#38d4ffff'; }}
+            style={{
+              padding: "6px 14px",
+              fontSize: "0.85rem",
+              background: "rgba(56, 169, 255, 0.15)",
+              color: "#38b6ffff",
+              border: "1px solid rgba(56, 162, 255, 0.3)",
+              borderRadius: "6px",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.background = "#38a2ffff";
+              e.currentTarget.style.color = "#fff";
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.background = "rgba(56, 252, 255, 0.15)";
+              e.currentTarget.style.color = "#38d4ffff";
+            }}
           >
             Reset Chat
           </button>
@@ -301,7 +334,11 @@ const Detect = () => {
                 {/* Tampilkan gambar yang diunggah */}
                 {msg.image && (
                   <div className="message-image-container">
-                    <img src={msg.image} alt="User Upload" className="message-image" />
+                    <img
+                      src={msg.image}
+                      alt="User Upload"
+                      className="message-image"
+                    />
                   </div>
                 )}
 
@@ -318,7 +355,12 @@ const Detect = () => {
                     <div className="probability-section">
                       <div className="probability-info">
                         <span>Probabilitas AI</span>
-                        <span style={{ color: getProgressBarColor(msg.aiProbability), fontWeight: "bold" }}>
+                        <span
+                          style={{
+                            color: getProgressBarColor(msg.aiProbability),
+                            fontWeight: "bold",
+                          }}
+                        >
                           {msg.aiProbability}%
                         </span>
                       </div>
@@ -327,8 +369,10 @@ const Detect = () => {
                           className="probability-bar"
                           style={{
                             width: `${msg.aiProbability}%`,
-                            backgroundColor: getProgressBarColor(msg.aiProbability),
-                            boxShadow: `0 0 10px ${getProgressBarColor(msg.aiProbability)}`
+                            backgroundColor: getProgressBarColor(
+                              msg.aiProbability,
+                            ),
+                            boxShadow: `0 0 10px ${getProgressBarColor(msg.aiProbability)}`,
                           }}
                         />
                       </div>
@@ -347,43 +391,56 @@ const Detect = () => {
                     )}
 
                     {/* Tampilkan EXIF metadata jika ada */}
-                    {msg.metadata && (msg.metadata.make || msg.metadata.model || msg.metadata.software) && (
-                      <div className="metadata-section">
-                        <span className="section-title">Metadata EXIF Gambar:</span>
-                        <div className="metadata-grid">
-                          {msg.metadata.make && (
-                            <div className="metadata-item">
-                              <span className="meta-key">Kamera</span>
-                              <span className="meta-val">{msg.metadata.make}</span>
-                            </div>
-                          )}
-                          {msg.metadata.model && (
-                            <div className="metadata-item">
-                              <span className="meta-key">Model</span>
-                              <span className="meta-val">{msg.metadata.model}</span>
-                            </div>
-                          )}
-                          {msg.metadata.software && (
-                            <div className="metadata-item">
-                              <span className="meta-key">Software</span>
-                              <span className="meta-val">{msg.metadata.software}</span>
-                            </div>
-                          )}
-                          {msg.metadata.dateTime && (
-                            <div className="metadata-item">
-                              <span className="meta-key">Tanggal</span>
-                              <span className="meta-val">
-                                {new Date(msg.metadata.dateTime).toLocaleDateString("id-ID", {
-                                  year: "numeric",
-                                  month: "long",
-                                  day: "numeric"
-                                })}
-                              </span>
-                            </div>
-                          )}
+                    {msg.metadata &&
+                      (msg.metadata.make ||
+                        msg.metadata.model ||
+                        msg.metadata.software) && (
+                        <div className="metadata-section">
+                          <span className="section-title">
+                            Metadata EXIF Gambar:
+                          </span>
+                          <div className="metadata-grid">
+                            {msg.metadata.make && (
+                              <div className="metadata-item">
+                                <span className="meta-key">Kamera</span>
+                                <span className="meta-val">
+                                  {msg.metadata.make}
+                                </span>
+                              </div>
+                            )}
+                            {msg.metadata.model && (
+                              <div className="metadata-item">
+                                <span className="meta-key">Model</span>
+                                <span className="meta-val">
+                                  {msg.metadata.model}
+                                </span>
+                              </div>
+                            )}
+                            {msg.metadata.software && (
+                              <div className="metadata-item">
+                                <span className="meta-key">Software</span>
+                                <span className="meta-val">
+                                  {msg.metadata.software}
+                                </span>
+                              </div>
+                            )}
+                            {msg.metadata.dateTime && (
+                              <div className="metadata-item">
+                                <span className="meta-key">Tanggal</span>
+                                <span className="meta-val">
+                                  {new Date(
+                                    msg.metadata.dateTime,
+                                  ).toLocaleDateString("id-ID", {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                  })}
+                                </span>
+                              </div>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
                   </div>
                 )}
 
@@ -406,7 +463,13 @@ const Detect = () => {
                   <span></span>
                   <span></span>
                 </div>
-                <p style={{ margin: "5px 0 0 0", fontSize: "13px", opacity: 0.8 }}>
+                <p
+                  style={{
+                    margin: "5px 0 0 0",
+                    fontSize: "13px",
+                    opacity: 0.8,
+                  }}
+                >
                   Menganalisis gambar dan mendeteksi anomali AI...
                 </p>
               </div>
@@ -431,7 +494,9 @@ const Detect = () => {
                   ✕
                 </button>
               </div>
-              <span className="preview-label">Gambar siap dianalisis keasliannya</span>
+              <span className="preview-label">
+                Gambar siap dianalisis keasliannya
+              </span>
             </div>
           )}
 

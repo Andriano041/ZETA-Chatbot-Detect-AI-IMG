@@ -51,8 +51,8 @@ const Hero = () => {
           Platform pintar untuk mendeteksi gambar hasil AI dan berinteraksi dengan asisten virtual.
         </p>
         <div className="hero-actions">
-          <Button onClick={() => navigate('/app/home')}>
-            Login
+          <Button onClick={() => navigate('/login')}>
+            Masuk
           </Button>
         </div>
       </div>
